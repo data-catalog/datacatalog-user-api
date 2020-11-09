@@ -2,6 +2,7 @@ openapi: 3.0.0
 info:
   title: User
   version: '1.0'
+  description: Data Catalog User API.
   contact:
     name: Kata Sára Cseke
     email: katacseke@gmail.com
