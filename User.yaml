@@ -63,6 +63,15 @@ paths:
                 type: array
                 items:
                   $ref: ./definitions/UserResponse.yaml
+              examples:
+                example-1:
+                  value:
+                    - id: string
+                      email: example@mail.com
+                      firstName: Jane
+                      lastName: Doe
+                      username: User1
+                      role: user
       operationId: getUsers
       description: Get all users.
     post:
@@ -128,6 +137,62 @@ paths:
                   password: password123
       tags:
         - User
+  /token_info:
+    post:
+      summary: ''
+      operationId: tokenInfo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  active:
+                    type: boolean
+                    description: This is a boolean value of whether or not the presented token is currently active.
+                  client_id:
+                    type: string
+                    minLength: 1
+                    description: The unique identifier for the user that the token was issued to.
+                  username:
+                    type: string
+                    minLength: 1
+                    description: The username of the user that the token was issued to.
+                    example: user1
+                  exp:
+                    type: integer
+                    description: The unix timestamp indicating when this token will expire.
+                    example: 1437275311
+                  iat:
+                    type: integer
+                    description: Unix timestamp indicating when this token was originally issued.
+                    example: 1419350238
+                required:
+                  - active
+              examples:
+                Active response:
+                  value:
+                    active: true
+                    client_id: 231asdkj3249dkd
+                    username: janedoe
+                    exp: 1437275311
+                    iat: 1419350238
+                Inactive response:
+                  value:
+                    active: false
+      description: It provides information about the token.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              description: The token.
+        description: Contains the token.
+      tags:
+        - User
 components:
   securitySchemes:
     JWT:
@@ -138,4 +203,3 @@ components:
 tags:
   - name: Asset
   - name: User
-
