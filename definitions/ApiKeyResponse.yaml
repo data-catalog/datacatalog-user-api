@@ -1,0 +1,15 @@
+title: ApiKeyResponse
+type: object
+description: |-
+  ApiKey model sent by the server to the client.
+  Note that the actual key is only sent once after the creation of the key, and will only be stored a hased version of it on the server. Make sure to save the key, as it is not recoverable.
+properties:
+  title:
+    type: string
+    description: A descriptive name for the new api key.
+  id:
+    type: string
+    description: The unique identifier of the api key.
+required:
+  - title
+  - id

@@ -1,0 +1,15 @@
+title: TokenInfoRequest
+type: object
+properties:
+  token:
+    type: string
+    description: |
+      The string value of the token.
+  token_type_hint:
+    type: string
+    description: A hint about the type of the token submitted for introspection.
+    enum:
+      - access_token
+      - api_key
+required:
+  - token

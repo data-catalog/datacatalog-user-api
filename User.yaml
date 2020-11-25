@@ -154,9 +154,80 @@ paths:
         content:
           application/json:
             schema:
-              type: string
-              description: The token.
+              $ref: ./definitions/TokenInfoRequest.yaml
         description: Contains the token.
+      tags:
+        - User
+  /user/keys:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - User
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./definitions/ApiKeyResponse.yaml
+      operationId: getUserApiKeys
+      description: Lists the api keys for the authenticated user. Requires authentication via access token.
+      security:
+        - JWT: []
+    post:
+      summary: ''
+      operationId: createUserApiKey
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ./definitions/ApiKeyCreateResponse.yaml
+        '422':
+          description: Unprocessable Entity (WebDAV)
+      description: Generates a new api key for the authenticated user. Requires that you are authenticated via access token.
+      tags:
+        - User
+      security:
+        - JWT: []
+  '/user/keys/{keyId}':
+    parameters:
+      - schema:
+          type: string
+        name: keyId
+        in: path
+        required: true
+        description: The id of the api key.
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./definitions/ApiKeyResponse.yaml
+        '404':
+          description: Not Found
+      operationId: getUserApiKey
+      description: View a single api key of the authenticated user. Requires that you are authenticated via access token.
+      security:
+        - JWT: []
+    delete:
+      summary: ''
+      operationId: deleteUserApiKey
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+      description: Removes an api key from the authenticated user. Requires that you are authenticated via access token.
+      security:
+        - JWT: []
       tags:
         - User
 components:
@@ -166,6 +237,11 @@ components:
       scheme: bearer
       bearerFormat: JWT
       description: Authentication is made by the JWT token sent in the Authorizationheader of the request.
+    API Key:
+      name: API Key
+      type: apiKey
+      in: header
+      description: Authentication with API key.
 tags:
   - name: Asset
   - name: User
