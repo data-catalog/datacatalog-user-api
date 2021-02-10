@@ -237,11 +237,6 @@ components:
       scheme: bearer
       bearerFormat: JWT
       description: Authentication is made by the JWT token sent in the Authorizationheader of the request.
-    API Key:
-      name: API Key
-      type: apiKey
-      in: header
-      description: Authentication with API key.
 tags:
   - name: Asset
   - name: User
