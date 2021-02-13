@@ -203,7 +203,8 @@ paths:
         description: The id of the api key.
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - User
       responses:
         '200':
           description: OK
