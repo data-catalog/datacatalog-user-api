@@ -18,7 +18,7 @@ paths:
         required: true
         description: Unique identifier for user
     get:
-      summary: Your GET endpoint
+      summary: Get a User
       tags:
         - User
       responses:
@@ -34,7 +34,7 @@ paths:
       operationId: getUser
       description: Get user by ID
     delete:
-      summary: ''
+      summary: Delete a User
       operationId: deleteUser
       responses:
         '204':
@@ -46,7 +46,7 @@ paths:
         - JWT: []
   /users:
     get:
-      summary: Your GET endpoint
+      summary: Get all Users
       tags:
         - User
       responses:
@@ -62,7 +62,7 @@ paths:
       operationId: getUsers
       description: Get all users.
     post:
-      summary: ''
+      summary: Create a User
       operationId: createUser
       responses:
         '201':
@@ -81,7 +81,7 @@ paths:
         - User
   /users/login:
     post:
-      summary: ''
+      summary: Log In
       operationId: login
       responses:
         '200':
@@ -105,7 +105,7 @@ paths:
         - User
   /token_info:
     post:
-      summary: ''
+      summary: Token Introspection
       operationId: tokenInfo
       responses:
         '200':
@@ -126,7 +126,7 @@ paths:
         - User
   /user/keys:
     get:
-      summary: Your GET endpoint
+      summary: Get the API Keys of the Authenticated User
       tags:
         - ApiKey
         - User
@@ -144,7 +144,7 @@ paths:
       security:
         - JWT: []
     post:
-      summary: ''
+      summary: Create an API Key for the Authenticated User
       operationId: createUserApiKey
       responses:
         '201':
@@ -175,7 +175,7 @@ paths:
         required: true
         description: The id of the api key.
     get:
-      summary: Your GET endpoint
+      summary: Get an API Key
       tags:
         - ApiKey
         - User
@@ -193,7 +193,7 @@ paths:
       security:
         - JWT: []
     delete:
-      summary: ''
+      summary: Delete an API Key
       operationId: deleteUserApiKey
       responses:
         '204':
