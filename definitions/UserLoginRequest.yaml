@@ -1,17 +1,17 @@
 title: UserLoginRequest
 type: object
+x-examples:
+  Login example:
+    username: username1
+    password: password123
 properties:
   username:
     type: string
     example: username1
-    minLength: 3
   password:
     type: string
     format: password
     example: password123
-    pattern: '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$'
-    minLength: 6
-x-examples:
-  example-1:
-    username: username1
-    password: password123
+required:
+  - username
+  - password

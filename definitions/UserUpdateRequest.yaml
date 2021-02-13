@@ -1,0 +1,24 @@
+title: UserUpdateRequest
+type: object
+properties:
+  email:
+    type: string
+    format: email
+    example: example@mail.com
+  firstName:
+    type: string
+    example: Jane
+  lastName:
+    type: string
+    example: Doe
+  username:
+    type: string
+    minLength: 3
+    example: User1
+  password:
+    type: string
+    format: password
+    pattern: '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$'
+    minLength: 6
+    description: 'Password of minimum 6 characters, which contains at least a number and a letter'
+    example: password1234

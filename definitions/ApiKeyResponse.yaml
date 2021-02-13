@@ -6,10 +6,8 @@ description: |-
 properties:
   title:
     type: string
-    description: A descriptive name for the new api key.
+    description: ''
   id:
     type: string
     description: The unique identifier of the api key.
-required:
-  - title
-  - id
+    format: uuid

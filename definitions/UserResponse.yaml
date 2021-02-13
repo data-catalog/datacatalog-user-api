@@ -1,23 +1,28 @@
-allOf:
-  - type: object
-    properties:
-      id:
-        format: int64
-        type: string
-    required:
-      - id
-  - $ref: ./UserBase.yaml
-x-examples:
-  example-1:
-    id: string
-    email: example@mail.com
-    firstName: Jane
-    lastName: Doe
-    username: User1
-    role: user
-example-1:
-  id: 0
-  email: example@mail.com
-  firstName: Andrea
-  lastName: string
-description: Model sent by the server to the client
+title: UserResponse
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: 507f1f77bcf86cd799439011
+  email:
+    type: string
+    format: email
+    example: example@mail.com
+  firstName:
+    type: string
+    example: Jane
+  lastName:
+    type: string
+    example: Doe
+  username:
+    type: string
+    minLength: 3
+    example: User1
+  role:
+    type: string
+    enum:
+      - admin
+      - user
+    example: user
+    default: user

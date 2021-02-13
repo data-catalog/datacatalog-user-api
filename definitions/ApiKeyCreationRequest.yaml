@@ -1,7 +1,10 @@
-title: ApiKeyRequest
+title: ApiKeyCreationRequest
 type: object
+description: ApiKey model sent by the client to the server for creating a new api key.
 properties:
   title:
     type: string
     description: A descriptive name for the new api key. Use a name that will help you recognize this key in your account.
-description: ApiKey model sent by the client to the server for creating a new api key.
+    minLength: 1
+required:
+  - title

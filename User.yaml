@@ -28,14 +28,7 @@ paths:
             application/json:
               schema:
                 $ref: definitions/UserResponse.yaml
-              examples:
-                example-1:
-                  value:
-                    id: '0'
-                    email: example@mail.com
-                    firstName: Jane
-                    lastName: Doe
-                    username: User1
+              examples: {}
         '404':
           description: User not found
       operationId: getUser
@@ -49,6 +42,8 @@ paths:
       description: Delete a specific user
       tags:
         - User
+      security:
+        - JWT: []
   /users:
     get:
       summary: Your GET endpoint
@@ -63,15 +58,7 @@ paths:
                 type: array
                 items:
                   $ref: ./definitions/UserResponse.yaml
-              examples:
-                example-1:
-                  value:
-                    - id: string
-                      email: example@mail.com
-                      firstName: Jane
-                      lastName: Doe
-                      username: User1
-                      role: user
+              examples: {}
       operationId: getUsers
       description: Get all users.
     post:
@@ -79,7 +66,7 @@ paths:
       operationId: createUser
       responses:
         '201':
-          description: New user created.
+          description: Created
         '422':
           description: Unprocessable entity.
       description: Create new user (registration).
@@ -87,15 +74,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./definitions/UserRequest.yaml
-            examples:
-              example:
-                value:
-                  email: example@mail.com
-                  firstName: Jane
-                  lastName: Doe
-                  username: User1
-                  password: password1234
+              $ref: ./definitions/ApiKeyCreationRequest.yaml
+            examples: {}
         description: User information for registration.
       tags:
         - User
@@ -110,17 +90,7 @@ paths:
             application/json:
               schema:
                 $ref: ./definitions/UserLoginResponse.yaml
-              examples:
-                example:
-                  value:
-                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0ODUxNDA5ODQsImlhdCI6MTQ4NTEzNzM4NCwiaXNzIjoiYWNtZS5jb20iLCJzdWIiOiIyOWFjMGMxOC0wYjRhLTQyY2YtODJmYy0wM2Q1NzAzMThhMWQiLCJhcHBsaWNhdGlvbklkIjoiNzkxMDM3MzQtOTdhYi00ZDFhLWFmMzctZTAwNmQwNWQyOTUyIiwic
-                    user:
-                      id: string
-                      email: example@mail.com
-                      firstName: Jane
-                      lastName: Doe
-                      username: User1
-                      role: user
+              examples: {}
         '401':
           description: Authentication failed. The username or password is not correct.
       description: Log user into the system.
@@ -130,11 +100,7 @@ paths:
           application/json:
             schema:
               $ref: ./definitions/UserLoginRequest.yaml
-            examples:
-              example-1:
-                value:
-                  username: username1
-                  password: password123
+            examples: {}
       tags:
         - User
   /token_info:
@@ -162,6 +128,7 @@ paths:
     get:
       summary: Your GET endpoint
       tags:
+        - ApiKey
         - User
       responses:
         '200':
@@ -185,14 +152,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./definitions/ApiKeyCreateResponse.yaml
+                $ref: ./definitions/ApiKeyCreationResponse.yaml
         '422':
           description: Unprocessable Entity (WebDAV)
       description: Generates a new api key for the authenticated user. Requires that you are authenticated via access token.
       tags:
+        - ApiKey
         - User
       security:
         - JWT: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./definitions/ApiKeyCreationRequest.yaml
   '/user/keys/{keyId}':
     parameters:
       - schema:
@@ -204,6 +177,7 @@ paths:
     get:
       summary: Your GET endpoint
       tags:
+        - ApiKey
         - User
       responses:
         '200':
@@ -230,6 +204,7 @@ paths:
       security:
         - JWT: []
       tags:
+        - ApiKey
         - User
 components:
   securitySchemes:
@@ -241,3 +216,4 @@ components:
 tags:
   - name: Asset
   - name: User
+  - name: ApiKey
