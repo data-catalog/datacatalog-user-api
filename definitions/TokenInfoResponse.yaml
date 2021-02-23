@@ -35,7 +35,9 @@ properties:
     type: integer
     description: The unix timestamp indicating when this token will expire.
     example: 1437275311
+    format: int64
   iat:
     type: integer
     description: Unix timestamp indicating when this token was originally issued.
     example: 1419350238
+    format: int64
