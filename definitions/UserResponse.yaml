@@ -21,7 +21,7 @@ properties:
   role:
     type: string
     example: user
-    default: user
     enum:
       - ADMIN
       - USER
+    default: USER
