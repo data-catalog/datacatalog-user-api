@@ -26,11 +26,11 @@ properties:
     example: user1
   role:
     type: string
-    enum:
-      - user
-      - admin
     description: |
       the role for the user that the token was issued to.
+    enum:
+      - USER
+      - ADMIN
   exp:
     type: integer
     description: The unix timestamp indicating when this token will expire.

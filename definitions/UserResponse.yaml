@@ -20,8 +20,8 @@ properties:
     example: User1
   role:
     type: string
-    enum:
-      - admin
-      - user
     example: user
     default: user
+    enum:
+      - ADMIN
+      - USER
