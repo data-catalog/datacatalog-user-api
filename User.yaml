@@ -226,6 +226,8 @@ paths:
       parameters:
         - schema:
             type: array
+            items:
+              type: string
             uniqueItems: true
           in: query
           name: ids
