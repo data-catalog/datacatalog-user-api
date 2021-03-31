@@ -263,6 +263,7 @@ paths:
     parameters:
       - schema:
           type: string
+          default: ''
         name: searchTerm
         in: path
         required: true
