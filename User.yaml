@@ -259,6 +259,29 @@ paths:
           description: Not Found
       operationId: getUserByUsername
       description: Returns the user with the specified username.
+  '/users/search/{searchTerm}':
+    parameters:
+      - schema:
+          type: string
+        name: searchTerm
+        in: path
+        required: true
+        description: The search term.
+    get:
+      summary: Search Users by Username
+      tags:
+        - User
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./definitions/UserResponse.yaml
+      operationId: searchUsers
+      description: Returns the users which usernames contain the searchTerm.
 components:
   securitySchemes:
     JWT:
