@@ -45,18 +45,25 @@ paths:
       security:
         - JWT: []
     patch:
-      summary: ''
+      summary: Update User by ID
       operationId: updateUser
       responses:
         '204':
           description: No Content
         '404':
           description: Not Found
-      description: Updates the specified attributes of a user. The attributes not present in the request remain unchanged.
+      description: |-
+        Updates the specified attributes of a user. The attributes not present in the request remain unchanged.
+        The role of the user CANNOT be updated using this endpoint.
       security:
         - JWT: []
       tags:
         - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./definitions/UserUpdateRequest.yaml
   /users:
     get:
       summary: Get all Users
@@ -296,6 +303,32 @@ paths:
                   $ref: ./definitions/UserResponse.yaml
       operationId: searchUsers
       description: Returns the users which usernames contain the searchTerm.
+  '/users/{userId}/role':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+        description: The id of the user.
+    put:
+      summary: Modify User Role by ID
+      operationId: modifyUserRole
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+      tags:
+        - User
+      description: Modifies the user's role.
+      security:
+        - JWT: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./definitions/UserRoleUpdateRequest.yaml
 components:
   securitySchemes:
     JWT:
