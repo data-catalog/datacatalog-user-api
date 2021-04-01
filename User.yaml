@@ -44,6 +44,19 @@ paths:
         - User
       security:
         - JWT: []
+    patch:
+      summary: ''
+      operationId: updateUser
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+      description: Updates the specified attributes of a user. The attributes not present in the request remain unchanged.
+      security:
+        - JWT: []
+      tags:
+        - User
   /users:
     get:
       summary: Get all Users
