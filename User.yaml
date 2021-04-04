@@ -55,6 +55,7 @@ paths:
       description: |-
         Updates the specified attributes of a user. The attributes not present in the request remain unchanged.
         The role of the user CANNOT be updated using this endpoint.
+        The username CANNOT be updated at all.
       security:
         - JWT: []
       tags:

@@ -11,10 +11,6 @@ properties:
   lastName:
     type: string
     example: Doe
-  username:
-    type: string
-    minLength: 3
-    example: User1
   password:
     type: string
     format: password
