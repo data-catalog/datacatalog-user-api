@@ -52,6 +52,12 @@ paths:
           description: No Content
         '404':
           description: Not Found
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                $ref: ./definitions/ErrorResponse.yaml
       description: |-
         Updates the specified attributes of a user. The attributes not present in the request remain unchanged.
         The role of the user CANNOT be updated using this endpoint.
@@ -90,6 +96,10 @@ paths:
           description: Created
         '422':
           description: Unprocessable entity.
+          content:
+            application/json:
+              schema:
+                $ref: ./definitions/ErrorResponse.yaml
       description: Create new user (registration).
       requestBody:
         content:
@@ -114,6 +124,12 @@ paths:
               examples: {}
         '401':
           description: Authentication failed. The username or password is not correct.
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                $ref: ./definitions/ErrorResponse.yaml
       description: Log user into the system.
       parameters: []
       requestBody:
@@ -316,10 +332,14 @@ paths:
       summary: Modify User Role by ID
       operationId: modifyUserRole
       responses:
-        '204':
-          description: No Content
         '404':
           description: Not Found
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                $ref: ./definitions/ErrorResponse.yaml
       tags:
         - User
       description: Modifies the user's role.
