@@ -5,12 +5,15 @@ properties:
     type: string
     format: email
     example: example@mail.com
+    description: The new e-mail address.
   firstName:
     type: string
     example: Jane
+    description: The new first name.
   lastName:
     type: string
     example: Doe
+    description: The new last name.
   password:
     type: string
     format: password

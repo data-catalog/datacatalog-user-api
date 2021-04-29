@@ -1,13 +1,20 @@
 openapi: 3.0.0
 info:
-  title: User
+  title: Data Catalog User Service API
   version: '1.0'
-  description: Data Catalog User API.
+  description: |-
+    The user handling service of the Data Catalog application.
+
+    Provides API endpoints to register, and log in to the application. 
+    It communicates with other services to tell informations about tokens, thus authorizing a request made at another service.
+    Provides endpoints to delete, and list users for administrative purposes.
+
+    The api supports JWT token, and API key authentication.
   contact:
-    name: Kata Sára Cseke
-    email: katacseke@gmail.com
+    name: Szilárd Tumó
+    email: szilard.tumo@stud.ubbcluj.ro
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'https://userhandlingservice.azurewebsites.net'
 paths:
   '/users/{userId}':
     parameters:
@@ -16,7 +23,7 @@ paths:
         name: userId
         in: path
         required: true
-        description: Unique identifier for user
+        description: The ID of the user.
     get:
       summary: Get a User
       tags:
@@ -30,16 +37,23 @@ paths:
                 $ref: definitions/UserResponse.yaml
               examples: {}
         '404':
-          description: User not found
+          description: Not Found
       operationId: getUser
-      description: Get user by ID
+      description: Returns the user which ID corresponds to the ID provided.
     delete:
       summary: Delete a User
       operationId: deleteUser
       responses:
         '204':
           description: User deleted
-      description: Delete a specific user
+        '404':
+          description: Not Found
+      description: |-
+        Delete the user which ID corresponds to the ID provided.
+
+        Requires authentication and *ADMIN* rights to perform the deletion.
+
+        A response with status code of `204` with empty resonse body indicates that the deletion was successful.
       tags:
         - User
       security:
@@ -59,9 +73,16 @@ paths:
               schema:
                 $ref: ./definitions/ErrorResponse.yaml
       description: |-
-        Updates the specified attributes of a user. The attributes not present in the request remain unchanged.
-        The role of the user CANNOT be updated using this endpoint.
-        The username CANNOT be updated at all.
+        Update the user which ID corresponds to the ID provided.
+
+        Only the attributes specified in the HTTP body will be modified. The attributes which are not specified will **not** change.
+
+        The role of the user CANNOT be updated using this endpoint. The username CANNOT be updated at all.
+
+        Possible response codes:
+         - `204`: The update was successful.
+         - `404`: There is no user found with the provided ID.
+         - `422`: The object provided in the request body is malformed. A detailed explanation can be found in the response body. The user will not be updated.
       security:
         - JWT: []
       tags:
@@ -87,7 +108,7 @@ paths:
                   $ref: ./definitions/UserResponse.yaml
               examples: {}
       operationId: getUsers
-      description: Get all users.
+      description: Lists all the users.
     post:
       summary: Create a User
       operationId: createUser
@@ -130,7 +151,7 @@ paths:
             application/json:
               schema:
                 $ref: ./definitions/ErrorResponse.yaml
-      description: Log user into the system.
+      description: Log in with a username and password.
       parameters: []
       requestBody:
         content:
@@ -140,7 +161,6 @@ paths:
             examples: {}
       tags:
         - Authentication
-        - User
   /token_info:
     post:
       summary: Token Introspection
@@ -153,22 +173,25 @@ paths:
               schema:
                 $ref: ./definitions/TokenInfoResponse.yaml
               examples: {}
-      description: It provides information about the token.
+        '422':
+          description: Unprocessable Entity (WebDAV)
+      description: |-
+        It provides information about the token.
+
+        Primarily used by other services of the application, to confirm the token's authenticity.
       requestBody:
         content:
           application/json:
             schema:
               $ref: ./definitions/TokenInfoRequest.yaml
-        description: Contains the token.
+        description: ''
       tags:
         - Authentication
-        - User
   /user/keys:
     get:
       summary: Get the API Keys of the Authenticated User
       tags:
         - ApiKey
-        - User
       responses:
         '200':
           description: OK
@@ -179,7 +202,10 @@ paths:
                 items:
                   $ref: ./definitions/ApiKeyResponse.yaml
       operationId: getUserApiKeys
-      description: Lists the api keys for the authenticated user. Requires authentication via access token.
+      description: |-
+        Lists the API keys for the authenticated user. For security reasons, it only returns the name and ID, not the key itself.
+
+        Requires authentication.
       security:
         - JWT: []
     post:
@@ -194,10 +220,14 @@ paths:
                 $ref: ./definitions/ApiKeyCreationResponse.yaml
         '422':
           description: Unprocessable Entity (WebDAV)
-      description: Generates a new api key for the authenticated user. Requires that you are authenticated via access token.
+      description: |-
+        Generates a new API key for the authenticated user.
+
+        Requires authentication.
+         
+        The key will be returned only with this request. It cannot be viewed again.
       tags:
         - ApiKey
-        - User
       security:
         - JWT: []
       requestBody:
@@ -212,12 +242,11 @@ paths:
         name: keyId
         in: path
         required: true
-        description: The id of the api key.
+        description: The ID of the API key.
     get:
       summary: Get an API Key
       tags:
         - ApiKey
-        - User
       responses:
         '200':
           description: OK
@@ -228,7 +257,7 @@ paths:
         '404':
           description: Not Found
       operationId: getUserApiKey
-      description: View a single api key of the authenticated user. Requires that you are authenticated via access token.
+      description: 'View a single API key of the authenticated user. For security reasons, it only returns the name and ID, not the key itself.'
       security:
         - JWT: []
     delete:
@@ -239,12 +268,11 @@ paths:
           description: No Content
         '404':
           description: Not Found
-      description: Removes an api key from the authenticated user. Requires that you are authenticated via access token.
+      description: Removes an API key from the authenticated user.
       security:
         - JWT: []
       tags:
         - ApiKey
-        - User
   /users/show_many:
     get:
       summary: Get Many Users by ID
@@ -268,7 +296,7 @@ paths:
             uniqueItems: true
           in: query
           name: ids
-          description: A comma separated list of ids to query.
+          description: A comma separated list of IDs to query.
           required: true
           style: form
       description: Returns all of the users with the specified IDs.
@@ -327,11 +355,13 @@ paths:
         name: userId
         in: path
         required: true
-        description: The id of the user.
+        description: The ID of the user.
     put:
       summary: Modify User Role by ID
       operationId: modifyUserRole
       responses:
+        '204':
+          description: No Content
         '404':
           description: Not Found
         '422':
@@ -342,7 +372,10 @@ paths:
                 $ref: ./definitions/ErrorResponse.yaml
       tags:
         - User
-      description: Modifies the user's role.
+      description: |-
+        Modifies the user's role.
+
+        Requires authentication and *ADMIN* rights.
       security:
         - JWT: []
       requestBody:
@@ -355,10 +388,9 @@ components:
     JWT:
       type: http
       scheme: bearer
-      bearerFormat: JWT
-      description: Authentication is made by the JWT token sent in the Authorizationheader of the request.
+      bearerFormat: Bearer <token>
+      description: Authentication is made by the JWT token sent in the Authorization header of the request.
 tags:
-  - name: Asset
-  - name: User
   - name: ApiKey
   - name: Authentication
+  - name: User

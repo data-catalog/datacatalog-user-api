@@ -1,15 +1,13 @@
 title: ApiKeyCreationResponse
-description: |-
-  ApiKey model sent by the server to the client after the generation of a new api key.
-  Note that the actual key is only sent once after the creation of the key, and will only be stored a hashed version of it on the server. Make sure to save the key, as it is not recoverable.
+description: ''
 type: object
 properties:
   title:
     type: string
-    description: A descriptive name for the new api key.
+    description: A name of the API key.
   id:
     type: string
-    description: The unique identifier of the api key.
+    description: The ID of the api key.
   key:
     type: string
     description: 'The api key. It is only sent once, after the creation of the api key.'

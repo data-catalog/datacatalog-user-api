@@ -14,11 +14,11 @@ examples:
 properties:
   active:
     type: boolean
-    description: This is a boolean value of whether or not the presented token is currently active.
+    description: This is a boolean value indicating if the token is currently active.
   userId:
     type: string
     minLength: 1
-    description: The unique identifier for the user that the token was issued to.
+    description: The ID of the user that the token was issued to.
   username:
     type: string
     minLength: 1
@@ -27,7 +27,7 @@ properties:
   role:
     type: string
     description: |
-      the role for the user that the token was issued to.
+      The role of the user that the token was issued to.
     enum:
       - USER
       - ADMIN

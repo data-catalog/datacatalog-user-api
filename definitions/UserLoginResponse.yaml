@@ -1,12 +1,5 @@
 title: UserLoginResponse
 type: object
-properties:
-  token:
-    type: string
-    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0ODUxNDA5ODQsImlhdCI6MTQ4NTEzNzM4NCwiaXNzIjoiYWNtZS5jb20iLCJzdWIiOiIyOWFjMGMxOC0wYjRhLTQyY2YtODJmYy0wM2Q1NzAzMThhMWQiLCJhcHBsaWNhdGlvbklkIjoiNzkxMDM3MzQtOTdhYi00ZDFhLWFmMzctZTAwNmQwNWQyOTUyIiwic
-    description: JWT token sent by the server. The client will send this with every request to authenticate themselves.
-  user:
-    $ref: ./UserResponse.yaml
 x-examples:
   Successful login response example:
     token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0ODUxNDA5ODQsImlhdCI6MTQ4NTEzNzM4NCwiaXNzIjoiYWNtZS5jb20iLCJzdWIiOiIyOWFjMGMxOC0wYjRhLTQyY2YtODJmYy0wM2Q1NzAzMThhMWQiLCJhcHBsaWNhdGlvbklkIjoiNzkxMDM3MzQtOTdhYi00ZDFhLWFmMzctZTAwNmQwNWQyOTUyIiwic
@@ -18,3 +11,9 @@ x-examples:
       username: User1
       role: user
 description: ''
+properties:
+  token:
+    type: string
+    description: JWT token sent by the server. The client will send this with every request to authenticate themselves.
+  user:
+    $ref: ./UserResponse.yaml

@@ -7,11 +7,11 @@ x-examples:
 properties:
   username:
     type: string
-    example: username1
+    description: The username of the user.
   password:
     type: string
     format: password
-    example: password123
+    description: The password of the user.
 required:
   - username
   - password

@@ -3,25 +3,25 @@ type: object
 properties:
   id:
     type: string
-    example: 507f1f77bcf86cd799439011
+    description: The ID of the user.
   email:
     type: string
     format: email
-    example: example@mail.com
+    description: The e-mail address of the user.
   firstName:
     type: string
-    example: Jane
+    description: The first name of the user.
   lastName:
     type: string
-    example: Doe
+    description: The last name of the user.
   username:
     type: string
     minLength: 3
-    example: User1
+    description: The username of the user.
   role:
     type: string
-    example: user
     enum:
       - ADMIN
       - USER
     default: USER
+    description: The role of the user.
