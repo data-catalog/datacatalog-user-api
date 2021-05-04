@@ -8,4 +8,3 @@ properties:
   id:
     type: string
     description: The ID of the api key.
-    format: uuid
