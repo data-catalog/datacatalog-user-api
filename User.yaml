@@ -58,7 +58,7 @@ paths:
         - User
       security:
         - JWT: []
-        - API Key: []
+        - ApiKey: []
     patch:
       summary: Update User by ID
       operationId: updateUser
@@ -86,7 +86,7 @@ paths:
          - `422`: The object provided in the request body is malformed. A detailed explanation can be found in the response body. The user will not be updated.
       security:
         - JWT: []
-        - API Key: []
+        - ApiKey: []
       tags:
         - User
       requestBody:
@@ -262,7 +262,7 @@ paths:
       description: 'View a single API key of the authenticated user. For security reasons, it only returns the name and ID, not the key itself.'
       security:
         - JWT: []
-        - API Key: []
+        - ApiKey: []
     delete:
       summary: Delete an API Key
       operationId: deleteUserApiKey
@@ -274,7 +274,7 @@ paths:
       description: Removes an API key from the authenticated user.
       security:
         - JWT: []
-        - API Key: []
+        - ApiKey: []
       tags:
         - ApiKey
   /users/show_many:
@@ -382,7 +382,7 @@ paths:
         Requires authentication and *ADMIN* rights.
       security:
         - JWT: []
-        - API Key: []
+        - ApiKey: []
       requestBody:
         content:
           application/json:
@@ -395,11 +395,11 @@ components:
       scheme: bearer
       bearerFormat: Bearer <token>
       description: Authentication is made by the JWT token sent in the Authorization header of the request.
-    API Key:
+    ApiKey:
       name: Authorization
       type: apiKey
       in: header
-      description: 'Authentication is made by the API key sent in the Authorization header of the request, in the following format: `Bearer <api_key>`'
+      description: 'Authentication is made by the API key sent in the Authorization header of the request, in the following format: `Bearer <api_key>`.'
 tags:
   - name: ApiKey
     x-displayName: API Key Management
