@@ -4,7 +4,7 @@ type: object
 properties:
   title:
     type: string
-    description: A name of the API key.
+    description: A name for the API key. Should be unique for the user.
   id:
     type: string
     description: The ID of the api key.
