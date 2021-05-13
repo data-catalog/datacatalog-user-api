@@ -8,3 +8,7 @@ properties:
   id:
     type: string
     description: The ID of the api key.
+  createdAt:
+    type: string
+    format: date-time
+    description: The date of creation.

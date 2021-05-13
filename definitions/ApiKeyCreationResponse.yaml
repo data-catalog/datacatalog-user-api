@@ -11,3 +11,7 @@ properties:
   key:
     type: string
     description: 'The api key. It is only sent once, after the creation of the api key.'
+  createdAt:
+    type: string
+    description: The date of creation.
+    format: date-time
