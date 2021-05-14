@@ -5,7 +5,7 @@ properties:
     type: string
     format: email
     example: example@mail.com
-    description: The new e-mail address.
+    description: The new e-mail address. Must be unique in the application.
   firstName:
     type: string
     example: Jane

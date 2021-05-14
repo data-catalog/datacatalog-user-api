@@ -7,11 +7,12 @@ x-examples:
     lastName: Doe
     username: User1
     password: password1234
+description: ''
 properties:
   email:
     type: string
     format: email
-    description: The e-mail address of the user. Another user with this email must not exist in the application.
+    description: The e-mail address of the user. Must be unique in the application.
   firstName:
     type: string
     description: The first name of the user.
@@ -21,7 +22,7 @@ properties:
   username:
     type: string
     minLength: 3
-    description: The username of the user. This will appear to other users.
+    description: The username of the user. This will appear to other users. Must be unique in the application.
   password:
     type: string
     format: password

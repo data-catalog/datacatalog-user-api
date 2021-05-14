@@ -78,6 +78,8 @@ paths:
 
         Only the attributes specified in the HTTP body will be modified. The attributes which are not specified will **not** change.
 
+        The e-mail address must be unique in the application.
+
         The role of the user CANNOT be updated using this endpoint. The username CANNOT be updated at all.
 
         Possible response codes:
@@ -123,7 +125,10 @@ paths:
             application/json:
               schema:
                 $ref: ./definitions/ErrorResponse.yaml
-      description: Create new user (registration).
+      description: |-
+        Create new user (registration).
+
+        The e-mail address and username must be unique in the application.
       requestBody:
         content:
           application/json:
@@ -226,6 +231,8 @@ paths:
         Generates a new API key for the authenticated user.
 
         Requires authentication.
+
+        The key title must be unique for the user.
          
         The key will be returned only with this request. It cannot be viewed again.
       tags:
