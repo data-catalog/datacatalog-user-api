@@ -10,13 +10,13 @@ get:
   tags:
     - ApiKey
   responses:
-    '200':
+    "200":
       description: OK
       content:
         application/json:
           schema:
-            $ref: ./definitions/ApiKeyResponse.yaml
-    '404':
+            $ref: ../components/schemas/ApiKeyResponse.yaml
+    "404":
       description: Not Found
   operationId: getUserApiKey
   description: >-
@@ -29,9 +29,9 @@ delete:
   summary: Delete an API Key
   operationId: deleteUserApiKey
   responses:
-    '204':
+    "204":
       description: No Content
-    '404':
+    "404":
       description: Not Found
   description: Removes an API key from the authenticated user.
   security:

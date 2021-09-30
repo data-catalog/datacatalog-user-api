@@ -10,13 +10,13 @@ get:
   tags:
     - User
   responses:
-    '200':
+    "200":
       description: OK
       content:
         application/json:
           schema:
-            $ref: ./definitions/UserResponse.yaml
-    '404':
+            $ref: ../components/schemas/UserResponse.yaml
+    "404":
       description: Not Found
   operationId: getUserByUsername
   description: Returns the user with the specified username.

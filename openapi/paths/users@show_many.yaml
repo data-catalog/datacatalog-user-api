@@ -3,14 +3,14 @@ get:
   tags:
     - User
   responses:
-    '200':
+    "200":
       description: OK
       content:
         application/json:
           schema:
             type: array
             items:
-              $ref: ./definitions/UserResponse.yaml
+              $ref: ../components/schemas/UserResponse.yaml
   operationId: getManyUsersById
   parameters:
     - schema:

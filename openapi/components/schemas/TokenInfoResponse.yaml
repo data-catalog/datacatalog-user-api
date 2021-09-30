@@ -1,16 +1,5 @@
 title: TokenInfoResponse
 type: object
-examples:
-  Active response:
-    value:
-      active: true
-      client_id: 231asdkj3249dkd
-      username: janedoe
-      exp: 1437275311
-      iat: 1419350238
-  Inactive response:
-    value:
-      active: false
 properties:
   active:
     type: boolean

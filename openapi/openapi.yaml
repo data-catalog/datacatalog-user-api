@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: Data Catalog User Service API
-  version: '1.0'
+  version: "1.0"
   description: >-
     The user handling service of the Data Catalog application.
 
@@ -18,10 +18,13 @@ info:
   contact:
     name: Szilárd Tumó
     email: szilard.tumo@stud.ubbcluj.ro
+  license:
+    name: MIT
+    url: https://raw.githubusercontent.com/data-catalog/datacatalog-user-api/master/LICENSE
 servers:
-  - url: 'https://userhandlingservice.azurewebsites.net'
+  - url: "https://userhandlingservice.azurewebsites.net"
 paths:
-  '/users/{userId}':
+  "/users/{userId}":
     $ref: 'paths\users@{userId}.yaml'
   /users:
     $ref: paths\users.yaml
@@ -31,15 +34,15 @@ paths:
     $ref: paths\token_info.yaml
   /user/keys:
     $ref: paths\user@keys.yaml
-  '/user/keys/{keyId}':
+  "/user/keys/{keyId}":
     $ref: 'paths\user@keys@{keyId}.yaml'
   /users/show_many:
     $ref: paths\users@show_many.yaml
-  '/users/username/{username}':
+  "/users/username/{username}":
     $ref: 'paths\users@username@{username}.yaml'
-  '/users/search/{searchTerm}':
+  "/users/search/{searchTerm}":
     $ref: 'paths\users@search@{searchTerm}.yaml'
-  '/users/{userId}/role':
+  "/users/{userId}/role":
     $ref: 'paths\users@{userId}@role.yaml'
 components:
   securitySchemes:
@@ -60,7 +63,10 @@ components:
 tags:
   - name: ApiKey
     x-displayName: API Key Management
+    description: Manage API keys.
   - name: Authentication
     x-displayName: Authentication
+    description: Manage login and token introspection.
   - name: User
     x-displayName: User
+    description: Manage users.

@@ -3,14 +3,14 @@ get:
   tags:
     - ApiKey
   responses:
-    '200':
+    "200":
       description: OK
       content:
         application/json:
           schema:
             type: array
             items:
-              $ref: ./definitions/ApiKeyResponse.yaml
+              $ref: ../components/schemas/ApiKeyResponse.yaml
   operationId: getUserApiKeys
   description: >-
     Lists the API keys for the authenticated user. For security reasons, it only
@@ -24,13 +24,13 @@ post:
   summary: Create an API Key for the Authenticated User
   operationId: createUserApiKey
   responses:
-    '201':
+    "201":
       description: Created
       content:
         application/json:
           schema:
-            $ref: ./definitions/ApiKeyCreationResponse.yaml
-    '422':
+            $ref: ../components/schemas/ApiKeyCreationResponse.yaml
+    "422":
       description: Unprocessable Entity (WebDAV)
   description: |-
     Generates a new API key for the authenticated user.
@@ -48,4 +48,4 @@ post:
     content:
       application/json:
         schema:
-          $ref: ./definitions/ApiKeyCreationRequest.yaml
+          $ref: ../components/schemas/ApiKeyCreationRequest.yaml

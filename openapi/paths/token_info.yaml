@@ -2,14 +2,14 @@ post:
   summary: Token Introspection
   operationId: tokenInfo
   responses:
-    '200':
+    "200":
       description: OK
       content:
         application/json:
           schema:
-            $ref: ./definitions/TokenInfoResponse.yaml
+            $ref: ../components/schemas/TokenInfoResponse.yaml
           examples: {}
-    '422':
+    "422":
       description: Unprocessable Entity (WebDAV)
   description: >-
     It provides information about the token.
@@ -21,7 +21,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ./definitions/TokenInfoRequest.yaml
-    description: ''
+          $ref: ../components/schemas/TokenInfoRequest.yaml
+    description: ""
   tags:
     - Authentication

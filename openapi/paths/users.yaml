@@ -3,14 +3,14 @@ get:
   tags:
     - User
   responses:
-    '200':
+    "200":
       description: OK
       content:
         application/json:
           schema:
             type: array
             items:
-              $ref: ./definitions/UserResponse.yaml
+              $ref: ../components/schemas/UserResponse.yaml
           examples: {}
   operationId: getUsers
   description: Lists all the users.
@@ -18,14 +18,14 @@ post:
   summary: Create a User
   operationId: createUser
   responses:
-    '201':
+    "201":
       description: Created
-    '422':
+    "422":
       description: Unprocessable entity.
       content:
         application/json:
           schema:
-            $ref: ./definitions/ErrorResponse.yaml
+            $ref: ../components/schemas/ErrorResponse.yaml
   description: |-
     Create new user (registration).
 
@@ -34,7 +34,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ./definitions/UserCreationRequest.yaml
+          $ref: ../components/schemas/UserCreationRequest.yaml
         examples: {}
     description: User information for registration.
   tags:

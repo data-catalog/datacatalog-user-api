@@ -1,7 +1,7 @@
 parameters:
   - schema:
       type: string
-      default: ''
+      default: ""
     name: searchTerm
     in: path
     required: true
@@ -11,13 +11,13 @@ get:
   tags:
     - User
   responses:
-    '200':
+    "200":
       description: OK
       content:
         application/json:
           schema:
             type: array
             items:
-              $ref: ./definitions/UserResponse.yaml
+              $ref: ../components/schemas/UserResponse.yaml
   operationId: searchUsers
   description: Returns the users which usernames contain the searchTerm.

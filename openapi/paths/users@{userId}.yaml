@@ -10,14 +10,14 @@ get:
   tags:
     - User
   responses:
-    '200':
+    "200":
       description: OK
       content:
         application/json:
           schema:
-            $ref: definitions/UserResponse.yaml
+            $ref: ../components/schemas/UserResponse.yaml
           examples: {}
-    '404':
+    "404":
       description: Not Found
   operationId: getUser
   description: Returns the user which ID corresponds to the ID provided.
@@ -25,9 +25,9 @@ delete:
   summary: Delete a User
   operationId: deleteUser
   responses:
-    '204':
+    "204":
       description: User deleted
-    '404':
+    "404":
       description: Not Found
   description: >-
     Delete the user which ID corresponds to the ID provided.
@@ -47,16 +47,16 @@ patch:
   summary: Update User by ID
   operationId: updateUser
   responses:
-    '204':
+    "204":
       description: No Content
-    '404':
+    "404":
       description: Not Found
-    '422':
+    "422":
       description: Unprocessable Entity (WebDAV)
       content:
         application/json:
           schema:
-            $ref: ./definitions/ErrorResponse.yaml
+            $ref: ../components/schemas/ErrorResponse.yaml
   description: >-
     Update the user which ID corresponds to the ID provided.
 
@@ -85,4 +85,4 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ./definitions/UserUpdateRequest.yaml
+          $ref: ../components/schemas/UserUpdateRequest.yaml

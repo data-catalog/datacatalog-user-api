@@ -9,16 +9,16 @@ put:
   summary: Modify User Role by ID
   operationId: modifyUserRole
   responses:
-    '204':
+    "204":
       description: No Content
-    '404':
+    "404":
       description: Not Found
-    '422':
+    "422":
       description: Unprocessable Entity (WebDAV)
       content:
         application/json:
           schema:
-            $ref: ./definitions/ErrorResponse.yaml
+            $ref: ../components/schemas/ErrorResponse.yaml
   tags:
     - User
   description: |-
@@ -32,4 +32,4 @@ put:
     content:
       application/json:
         schema:
-          $ref: ./definitions/UserRoleUpdateRequest.yaml
+          $ref: ../components/schemas/UserRoleUpdateRequest.yaml
