@@ -1,0 +1,27 @@
+get:
+  summary: Get Many Users by ID
+  tags:
+    - User
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ./definitions/UserResponse.yaml
+  operationId: getManyUsersById
+  parameters:
+    - schema:
+        type: array
+        items:
+          type: string
+        uniqueItems: true
+      in: query
+      name: ids
+      description: A comma separated list of IDs to query.
+      required: true
+      style: form
+  description: Returns all of the users with the specified IDs.
+parameters: []

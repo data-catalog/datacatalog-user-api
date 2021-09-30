@@ -1,0 +1,51 @@
+get:
+  summary: Get the API Keys of the Authenticated User
+  tags:
+    - ApiKey
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ./definitions/ApiKeyResponse.yaml
+  operationId: getUserApiKeys
+  description: >-
+    Lists the API keys for the authenticated user. For security reasons, it only
+    returns the name and ID, not the key itself.
+
+
+    Requires authentication.
+  security:
+    - JWT: []
+post:
+  summary: Create an API Key for the Authenticated User
+  operationId: createUserApiKey
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: ./definitions/ApiKeyCreationResponse.yaml
+    '422':
+      description: Unprocessable Entity (WebDAV)
+  description: |-
+    Generates a new API key for the authenticated user.
+
+    Requires authentication.
+
+    The key title must be unique for the user.
+     
+    The key will be returned only with this request. It cannot be viewed again.
+  tags:
+    - ApiKey
+  security:
+    - JWT: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ./definitions/ApiKeyCreationRequest.yaml

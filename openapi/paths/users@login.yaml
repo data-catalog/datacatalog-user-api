@@ -1,0 +1,29 @@
+post:
+  summary: Log In
+  operationId: login
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ./definitions/UserLoginResponse.yaml
+          examples: {}
+    '401':
+      description: Authentication failed. The username or password is not correct.
+    '422':
+      description: Unprocessable Entity (WebDAV)
+      content:
+        application/json:
+          schema:
+            $ref: ./definitions/ErrorResponse.yaml
+  description: Log in with a username and password.
+  parameters: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ./definitions/UserLoginRequest.yaml
+        examples: {}
+  tags:
+    - Authentication

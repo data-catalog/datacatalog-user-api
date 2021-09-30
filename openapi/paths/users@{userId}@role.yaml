@@ -1,0 +1,35 @@
+parameters:
+  - schema:
+      type: string
+    name: userId
+    in: path
+    required: true
+    description: The ID of the user.
+put:
+  summary: Modify User Role by ID
+  operationId: modifyUserRole
+  responses:
+    '204':
+      description: No Content
+    '404':
+      description: Not Found
+    '422':
+      description: Unprocessable Entity (WebDAV)
+      content:
+        application/json:
+          schema:
+            $ref: ./definitions/ErrorResponse.yaml
+  tags:
+    - User
+  description: |-
+    Modifies the user's role.
+
+    Requires authentication and *ADMIN* rights.
+  security:
+    - JWT: []
+    - ApiKey: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ./definitions/UserRoleUpdateRequest.yaml

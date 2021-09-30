@@ -1,0 +1,41 @@
+parameters:
+  - schema:
+      type: string
+    name: keyId
+    in: path
+    required: true
+    description: The ID of the API key.
+get:
+  summary: Get an API Key
+  tags:
+    - ApiKey
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ./definitions/ApiKeyResponse.yaml
+    '404':
+      description: Not Found
+  operationId: getUserApiKey
+  description: >-
+    View a single API key of the authenticated user. For security reasons, it
+    only returns the name and ID, not the key itself.
+  security:
+    - JWT: []
+    - ApiKey: []
+delete:
+  summary: Delete an API Key
+  operationId: deleteUserApiKey
+  responses:
+    '204':
+      description: No Content
+    '404':
+      description: Not Found
+  description: Removes an API key from the authenticated user.
+  security:
+    - JWT: []
+    - ApiKey: []
+  tags:
+    - ApiKey

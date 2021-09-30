@@ -1,0 +1,41 @@
+get:
+  summary: Get all Users
+  tags:
+    - User
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ./definitions/UserResponse.yaml
+          examples: {}
+  operationId: getUsers
+  description: Lists all the users.
+post:
+  summary: Create a User
+  operationId: createUser
+  responses:
+    '201':
+      description: Created
+    '422':
+      description: Unprocessable entity.
+      content:
+        application/json:
+          schema:
+            $ref: ./definitions/ErrorResponse.yaml
+  description: |-
+    Create new user (registration).
+
+    The e-mail address and username must be unique in the application.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ./definitions/UserCreationRequest.yaml
+        examples: {}
+    description: User information for registration.
+  tags:
+    - User

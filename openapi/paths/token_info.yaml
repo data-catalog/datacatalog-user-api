@@ -1,0 +1,27 @@
+post:
+  summary: Token Introspection
+  operationId: tokenInfo
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ./definitions/TokenInfoResponse.yaml
+          examples: {}
+    '422':
+      description: Unprocessable Entity (WebDAV)
+  description: >-
+    It provides information about the token.
+
+
+    Primarily used by other services of the application, to confirm the token's
+    authenticity.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ./definitions/TokenInfoRequest.yaml
+    description: ''
+  tags:
+    - Authentication

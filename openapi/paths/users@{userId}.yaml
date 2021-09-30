@@ -1,0 +1,88 @@
+parameters:
+  - schema:
+      type: string
+    name: userId
+    in: path
+    required: true
+    description: The ID of the user.
+get:
+  summary: Get a User
+  tags:
+    - User
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: definitions/UserResponse.yaml
+          examples: {}
+    '404':
+      description: Not Found
+  operationId: getUser
+  description: Returns the user which ID corresponds to the ID provided.
+delete:
+  summary: Delete a User
+  operationId: deleteUser
+  responses:
+    '204':
+      description: User deleted
+    '404':
+      description: Not Found
+  description: >-
+    Delete the user which ID corresponds to the ID provided.
+
+
+    Requires authentication and *ADMIN* rights to perform the deletion.
+
+
+    A response with status code of `204` with empty resonse body indicates that
+    the deletion was successful.
+  tags:
+    - User
+  security:
+    - JWT: []
+    - ApiKey: []
+patch:
+  summary: Update User by ID
+  operationId: updateUser
+  responses:
+    '204':
+      description: No Content
+    '404':
+      description: Not Found
+    '422':
+      description: Unprocessable Entity (WebDAV)
+      content:
+        application/json:
+          schema:
+            $ref: ./definitions/ErrorResponse.yaml
+  description: >-
+    Update the user which ID corresponds to the ID provided.
+
+
+    Only the attributes specified in the HTTP body will be modified. The
+    attributes which are not specified will **not** change.
+
+
+    The e-mail address must be unique in the application.
+
+
+    The role of the user CANNOT be updated using this endpoint. The username
+    CANNOT be updated at all.
+
+
+    Possible response codes:
+     - `204`: The update was successful.
+     - `404`: There is no user found with the provided ID.
+     - `422`: The object provided in the request body is malformed. A detailed explanation can be found in the response body. The user will not be updated.
+  security:
+    - JWT: []
+    - ApiKey: []
+  tags:
+    - User
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ./definitions/UserUpdateRequest.yaml
