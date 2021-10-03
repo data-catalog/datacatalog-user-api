@@ -1,0 +1,17 @@
+title: UserLoginRequest
+type: object
+x-examples:
+  Login example:
+    username: username1
+    password: password123
+properties:
+  username:
+    type: string
+    description: The username of the user.
+  password:
+    type: string
+    format: password
+    description: The password of the user.
+required:
+  - username
+  - password

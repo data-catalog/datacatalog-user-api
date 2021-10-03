@@ -1,0 +1,22 @@
+parameters:
+  - schema:
+      type: string
+    name: username
+    in: path
+    required: true
+    description: The username of the user.
+get:
+  summary: Get User by Username
+  tags:
+    - User
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/UserResponse.yaml
+    "404":
+      description: Not Found
+  operationId: getUserByUsername
+  description: Returns the user with the specified username.

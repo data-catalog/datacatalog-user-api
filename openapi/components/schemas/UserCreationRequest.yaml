@@ -1,0 +1,38 @@
+title: UserCreationRequest
+type: object
+x-examples:
+  Registration example:
+    email: example@mail.com
+    firstName: Jane
+    lastName: Doe
+    username: User1
+    password: password1234
+description: ''
+properties:
+  email:
+    type: string
+    format: email
+    description: The e-mail address of the user. Must be unique in the application.
+  firstName:
+    type: string
+    description: The first name of the user.
+  lastName:
+    type: string
+    description: The last name of the user.
+  username:
+    type: string
+    minLength: 3
+    description: The username of the user. This will appear to other users. Must be unique in the application.
+  password:
+    type: string
+    format: password
+    pattern: '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$'
+    minLength: 6
+    description: 'Password of minimum 6 characters, which contains at least a number and a letter.'
+    example: password1234
+required:
+  - email
+  - firstName
+  - lastName
+  - username
+  - password

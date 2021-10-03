@@ -1,0 +1,23 @@
+parameters:
+  - schema:
+      type: string
+      default: ""
+    name: searchTerm
+    in: path
+    required: true
+    description: The search term.
+get:
+  summary: Search Users by Username
+  tags:
+    - User
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/UserResponse.yaml
+  operationId: searchUsers
+  description: Returns the users which usernames contain the searchTerm.

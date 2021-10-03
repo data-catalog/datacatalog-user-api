@@ -1,0 +1,32 @@
+title: TokenInfoResponse
+type: object
+properties:
+  active:
+    type: boolean
+    description: This is a boolean value indicating if the token is currently active.
+  userId:
+    type: string
+    minLength: 1
+    description: The ID of the user that the token was issued to.
+  username:
+    type: string
+    minLength: 1
+    description: The username of the user that the token was issued to.
+    example: user1
+  role:
+    type: string
+    description: |
+      The role of the user that the token was issued to.
+    enum:
+      - USER
+      - ADMIN
+  exp:
+    type: integer
+    description: The unix timestamp indicating when this token will expire.
+    example: 1437275311
+    format: int64
+  iat:
+    type: integer
+    description: Unix timestamp indicating when this token was originally issued.
+    example: 1419350238
+    format: int64

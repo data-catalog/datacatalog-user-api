@@ -1,0 +1,11 @@
+title: UserRoleUpdateRequest
+type: object
+properties:
+  role:
+    type: string
+    description: The new role of the user.
+    enum:
+      - USER
+      - ADMIN
+required:
+  - role

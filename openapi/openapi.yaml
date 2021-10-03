@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Data Catalog User Service API
+  version: "1.0"
+  description: >-
+    The user handling service of the Data Catalog application.
+
+
+    Provides API endpoints to register, and log in to the application. 
+
+    It communicates with other services to tell informations about tokens, thus
+    authorizing a request made at another service.
+
+    Provides endpoints to delete, and list users for administrative purposes.
+
+
+    The api supports JWT token, and API key authentication.
+  contact:
+    name: Szilárd Tumó
+    email: szilard.tumo@stud.ubbcluj.ro
+  license:
+    name: MIT
+    url: https://raw.githubusercontent.com/data-catalog/datacatalog-user-api/master/LICENSE
+servers:
+  - url: "https://userhandlingservice.azurewebsites.net"
+paths:
+  "/users/{userId}":
+    $ref: 'paths\users@{userId}.yaml'
+  /users:
+    $ref: paths\users.yaml
+  /users/login:
+    $ref: paths\users@login.yaml
+  /token_info:
+    $ref: paths\token_info.yaml
+  /user/keys:
+    $ref: paths\user@keys.yaml
+  "/user/keys/{keyId}":
+    $ref: 'paths\user@keys@{keyId}.yaml'
+  /users/show_many:
+    $ref: paths\users@show_many.yaml
+  "/users/username/{username}":
+    $ref: 'paths\users@username@{username}.yaml'
+  "/users/search/{searchTerm}":
+    $ref: 'paths\users@search@{searchTerm}.yaml'
+  "/users/{userId}/role":
+    $ref: 'paths\users@{userId}@role.yaml'
+components:
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: Bearer <token>
+      description: >-
+        Authentication is made by the JWT token sent in the Authorization header
+        of the request.
+    ApiKey:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: >-
+        Authentication is made by the API key sent in the Authorization header
+        of the request, in the following format: `Bearer <api_key>`.
+tags:
+  - name: ApiKey
+    x-displayName: API Key Management
+    description: Manage API keys.
+  - name: Authentication
+    x-displayName: Authentication
+    description: Manage login and token introspection.
+  - name: User
+    x-displayName: User
+    description: Manage users.

@@ -1,0 +1,14 @@
+title: ApiKeyResponse
+type: object
+description: ''
+properties:
+  title:
+    type: string
+    description: The name of the API key.
+  id:
+    type: string
+    description: The ID of the api key.
+  createdAt:
+    type: string
+    format: date-time
+    description: The date of creation.
